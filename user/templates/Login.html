@@ -1,0 +1,43 @@
+{% if message %}
+<script>
+  alert("{{ message }}");
+</script>
+{% endif %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+
+  <body>
+    <h1>Welcome to Authenticator app</h1>
+    <div class="login-box">
+      <form action="/postsignIn/" method="post">
+        {% csrf_token %}
+        <!-- Enter Your Email: -->
+        <input type="email" id="Email" name="email" placeholder="Username" />
+        <!-- Enter Your Password: -->
+        <input
+          type="password"
+          id="Password"
+          name="pass"
+          placeholder="Password"
+        />
+        <input type="submit" value="SignIn" />
+        <p style="color: black; padding: 10px 0">
+          Forgot Password?
+          <a href="/reset/" style="color: black">Click Here to Reset</a>
+        </p>
+
+        <input type="checkbox" checked="checked" name="remember" /> Remember me
+        <button type="button" onclick="location.href='{% url 'signup' %} '">
+          SignUp
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+{% if message %}
+<script>
+  alert("{{ message }}");
+</script>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <h1>Sign Up</h1>
+    <form class="signup-form" action="/postsignUp/" method="post">
+      {% csrf_token %}
+
+      <input
+        type="name"
+        id="Username"
+        name="name"
+        placeholder="Your Name"
+        required
+      />
+
+      <input
+        type="email"
+        id="Email"
+        name="email"
+        placeholder="Your Email Id"
+        required
+      />
+
+      <input
+        type="password"
+        id="Password"
+        name="pass"
+        placeholder="Password"
+        required
+      />
+
+      <input
+        type="password"
+        id="confirm_password"
+        name="pass-repeat"
+        placeholder=" Repeat Password"
+        required
+      />
+
+      <input type="submit" value="SignUp" />
+    </form>
+  </body>
+</html>
