@@ -39,7 +39,7 @@ def postsignIn(request):
         return render(request, "Login.html", {"message": message})
     session_id = user['idToken']
     request.session['uid'] = str(session_id)
-    return render(request, "Home.html", {"email": email, "uid": user['idToken'],})
+    return render(request, "Home.html", {"email": email})
 
 
 def logout(request):
@@ -64,11 +64,6 @@ def postsignUp(request):
         user = authe.create_user_with_email_and_password(email, passs)
         print(user)
         message = "Your signed up successfully!!"
-        data = {
-            'name': name,
-            'email': email,
-        }
-        result = db.child("users").push(data,user['idToken'])
         return render(request, "Login.html", {"msg": message})
     except:
         return render(request, "Registration.html")
@@ -84,7 +79,7 @@ def postReset(request):
     try:
         authe.send_password_reset_email(email)
         message = "A email to reset password is successfully sent"
-        return render(request, "Reset.html", {"msg": message})
+        return render(request, "Login.html", {"msg": message})
     except:
         message = "Something went wrong, Please check the email you provided is registered or not"
         return render(request, "Reset.html", {"msg": message})

@@ -3,7 +3,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    
     # Here we are assigning the path of our url
     path('', views.signIn),
     path('postsignIn/', views.postsignIn),
@@ -11,5 +11,5 @@ urlpatterns = [
     path('logout/', views.logout, name="log"),
     path('postsignUp/', views.postsignUp),
     path('reset/', views.reset),
-    path('postReset/', views.postReset),
+    path('postReset', views.postReset),
 ]
